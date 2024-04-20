@@ -15,15 +15,15 @@ import { contactsSlice } from "./contactsSlice";
 import { filtersSlice } from "./filtersSlice";
 
 const contactsSliceConfig = {
-  key: "contact",
+  key: "contacts",
   storage,
-  whitelist: ["users"],
+  whitelist: ["items"],
 };
 
 export const store = configureStore({
   reducer: {
     mailbox: persistReducer(contactsSliceConfig, contactsSlice),
-    searchfilterSlice: filtersSlice,
+    searchFilterSlice: filtersSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

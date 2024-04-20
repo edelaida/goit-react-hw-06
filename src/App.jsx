@@ -1,5 +1,5 @@
-import contactsUser from "./listCotacts.json";
-import { useEffect, useMemo, useState } from "react";
+//import contactsUser from "./listCotacts.json";
+import { useMemo } from "react";
 import { nanoid } from "nanoid";
 import ContactForm from "./components/ContactForm/ContactForm";
 import ContactList from "./components/ContactList/ContactList";
@@ -11,20 +11,8 @@ import { setFilter } from "./redux/filtersSlice";
 
 function App() {
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.contact.users);
-  const filter = useSelector((state) => state.contact.filter);
-
-  // const [users, setUsers] = useState(() => {
-  //   const mapUsers = localStorage.getItem("users");
-  //   if (!mapUsers) return contactsUser;
-  //   const parsedUsers = JSON.parse(mapUsers);
-  //   return parsedUsers;
-  // });
-  // const [filter, setFilter] = useState("");
-
-  // useEffect(() => {
-  //   localStorage.setItem("users", JSON.stringify(users));
-  // }, [users]);
+  const contacts = useSelector((state) => state.contacts.items);
+  const filter = useSelector((state) => state.filters.name);
 
   const handleAdd = (formData) => {
     const finalUser = { ...formData, id: nanoid() };
@@ -39,21 +27,17 @@ function App() {
     dispatch(setFilter(event.target.value));
   };
 
-  // const filterUsers = users.filter(
-  //   (user) =>
-  //     user.name.toLowerCase().includes(filter.toLowerCase()) ||
-  //     user.number.toLowerCase().includes(filter.toLowerCase())
-  // );
   const filterUsers = useMemo(
     () =>
-      users.filter((user) => {
+      contacts.filter((user) => {
         return (
           user.name.toLowerCase().includes(filter.toLowerCase()) ||
           user.number.toLowerCase().includes(filter.toLowerCase())
         );
       }),
-    [filter, users]
+    [filter, contacts]
   );
+
   return (
     <div>
       <p>goit-react-hw-03</p>
@@ -66,3 +50,20 @@ function App() {
 }
 
 export default App;
+
+// const [users, setUsers] = useState(() => {
+//   const mapUsers = localStorage.getItem("users");
+//   if (!mapUsers) return contactsUser;
+//   const parsedUsers = JSON.parse(mapUsers);
+//   return parsedUsers;
+// });
+// const [filter, setFilter] = useState("");
+
+// useEffect(() => {
+//   localStorage.setItem("users", JSON.stringify(users));
+// }, [users]);
+// const filterUsers = users.filter(
+//   (user) =>
+//     user.name.toLowerCase().includes(filter.toLowerCase()) ||
+//     user.number.toLowerCase().includes(filter.toLowerCase())
+// );

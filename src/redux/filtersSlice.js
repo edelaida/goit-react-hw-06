@@ -1,15 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const INITAL_STATE = {
-  filter: "",
+  contacts: {
+    items: [],
+  },
+  filters: {
+    name: "",
+  },
 };
-
 const searchSlice = createSlice({
-  name: "fltr",
-  initialState: INITAL_STATE,
+  name: "filters",
+  initialState: INITAL_STATE.filters,
   reducers: {
     setFilter(state, action) {
-      state.filter = action.payload;
+      state.name = action.payload;
     },
   },
 });
@@ -18,3 +22,4 @@ export const { setFilter } = searchSlice.actions;
 
 // Редюсер слайсу
 export const filtersSlice = searchSlice.reducer;
+//export const selectNameFilter = (state) => state.filters.name;
