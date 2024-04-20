@@ -4,7 +4,7 @@ import { nanoid } from "nanoid";
 import ContactForm from "./components/ContactForm/ContactForm";
 import ContactList from "./components/ContactList/ContactList";
 import SearchBox from "./components/SearchBox/SearchBox";
-
+import css from "./App.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { addUser, deleteUser } from "./redux/contactsSlice";
 import { setFilter } from "./redux/filtersSlice";
@@ -39,8 +39,7 @@ function App() {
   );
 
   return (
-    <div>
-      <p>goit-react-hw-03</p>
+    <div className={css.block}>
       <h1>Phonebook</h1>
       <ContactForm handleAdd={handleAdd} />
       <SearchBox filter={filter} onChangeFilter={handleFilter} />

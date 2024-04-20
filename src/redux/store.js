@@ -22,8 +22,8 @@ const contactsSliceConfig = {
 
 export const store = configureStore({
   reducer: {
-    mailbox: persistReducer(contactsSliceConfig, contactsSlice),
-    searchFilterSlice: filtersSlice,
+    contacts: persistReducer(contactsSliceConfig, contactsSlice),
+    filters: filtersSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
