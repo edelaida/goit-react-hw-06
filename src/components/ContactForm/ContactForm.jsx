@@ -1,15 +1,22 @@
 import { Field, Form, Formik } from "formik";
+import { nanoid } from "nanoid";
+import { useDispatch } from "react-redux";
+import { addContact } from "../../redux/contactsSlice";
 
 const FORM_INITIAL = {
   name: "",
   number: "",
 };
 
-const ContactForm = ({ handleAdd }) => {
+const ContactForm = () => {
+  const dispatch = useDispatch();
+
   const handleSubmit = (values, actions) => {
-    handleAdd(values);
+    const finalUser = { ...values, id: nanoid() };
+    dispatch(addContact(finalUser));
     actions.resetForm();
   };
+
   return (
     <Formik initialValues={FORM_INITIAL} onSubmit={handleSubmit}>
       <Form>

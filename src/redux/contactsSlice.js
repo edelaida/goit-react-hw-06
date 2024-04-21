@@ -9,21 +9,19 @@ const INITAL_STATE = {
   },
 };
 const listSlice = createSlice({
-  name: "contact",
+  name: "contacts",
   initialState: INITAL_STATE.contacts,
   reducers: {
-    addUser(state, action) {
+    addContact(state, action) {
       state.items.push(action.payload);
     },
-    deleteUser(state, action) {
+    deleteContact(state, action) {
       state.items = state.items.filter((user) => user.id !== action.payload);
     },
   },
 });
 
-// Генератори екшенів
-export const { addUser, deleteUser } = listSlice.actions;
+export const { addContact, deleteContact } = listSlice.actions;
 
-// Редюсер слайсу
 export const contactsSlice = listSlice.reducer;
-//export const selectContacts = (state) => state.contacts.items;
+export const selectContacts = (state) => state.contacts.items;

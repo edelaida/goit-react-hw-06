@@ -12,14 +12,12 @@ const searchSlice = createSlice({
   name: "filters",
   initialState: INITAL_STATE.filters,
   reducers: {
-    setFilter(state, action) {
+    changeFilter(state, action) {
       state.name = action.payload;
     },
   },
 });
 
-export const { setFilter } = searchSlice.actions;
-
-// Редюсер слайсу
+export const { changeFilter } = searchSlice.actions;
 export const filtersSlice = searchSlice.reducer;
-//export const selectNameFilter = (state) => state.filters.name;
+export const selectNameFilter = (state) => state.filters.name;
